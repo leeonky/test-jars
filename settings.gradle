@@ -1,0 +1,6 @@
+rootProject.name = 'test-jars'
+
+include(
+        ':liba',
+        ':libb',
+)
