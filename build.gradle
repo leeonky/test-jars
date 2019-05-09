@@ -135,10 +135,13 @@ task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
     }
 }
 
-tasks.coveralls {
-    dependsOn jacocoRootReport
+coveralls {
     sourceDirs = publishedProjects.sourceSets.main.allSource.srcDirs.flatten()
     jacocoReportPath = "${buildDir}/reports/jacoco/jacocoRootReport/jacocoRootReport.xml"
+}
+
+tasks.coveralls {
+    dependsOn jacocoRootReport
 }
 
 task currentVersion {
