@@ -6,8 +6,8 @@ jobs:
   include:
     - stage: test
       install:
-        - ./gradlew tasks #make sure ./gradlew currentVersion -q only output version
-      before_script:
+        - ./gradlew tasks
+      before_script: #make sure ./gradlew currentVersion -q only output version
         - export PUB_VERSION=$(VERSION_SCOPE='' ./gradlew currentVersion -q)
         - echo "Check version[${PUB_VERSION}] and tag"
         - bash -c '! (git tag | grep "^${PUB_VERSION}$")'
@@ -15,7 +15,8 @@ jobs:
         - ./gradlew check build coveralls
 
     - stage: snapshot
-      install: skip
+      install:
+        - ./gradlew tasks
       env:
         - VERSION_SCOPE='-SNAPSHOT'
       script:
@@ -24,7 +25,7 @@ jobs:
 
     - stage: release
       install:
-        - ./gradlew tasks #make sure ./gradlew currentVersion -q only output version
+        - ./gradlew tasks
       env:
         - VERSION_SCOPE=''
       script:
