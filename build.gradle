@@ -24,7 +24,7 @@ jacoco {
     toolVersion = jacocoToolVersion
 }
 
-version = '0.0.1' + System.env.VERSION_SCOPE
+version = '0.0.2' + System.env.VERSION_SCOPE
 
 subprojects {
     apply plugin: 'java'
